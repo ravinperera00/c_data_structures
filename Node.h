@@ -1,8 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
-struct Node_int{
-    int data;
+struct Node{
+    void *data;
     struct Node_int *next;
 };
 
