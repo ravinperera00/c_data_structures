@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <stdio.h>
 
 struct Node *create_node(void *data);
 void destroy_node(struct Node *node);
@@ -6,7 +7,7 @@ struct Node *iterate(int index, struct LinkedList *linked_list);
 
 void insert_node(int index, void *data, struct LinkedList *linked_list);
 void remove_node(int index, struct LinkedList *linked_list);
-int retrieve_data(int index, struct LinkedList *linked_list);
+void *retrieve_data(int index, struct LinkedList *linked_list);
 
 struct LinkedList linked_list_constructor()
 {
@@ -23,7 +24,7 @@ struct LinkedList linked_list_constructor()
 struct Node *create_node(void *data)
 {
     struct Node *node = (struct Node *)malloc(sizeof(struct Node));
-    node->data = 0;
+    node->data = data;
     node->next = NULL;
 
     return node;
@@ -43,7 +44,7 @@ struct Node *iterate(int index, struct LinkedList *linked_list)
         exit(9);
     }
 
-    struct Node *node = linked_list->head; // Fixed the type specifier issue
+    struct Node *node = linked_list->head;
 
     for (int i = 0; i < index; i++)
     {
@@ -104,7 +105,7 @@ void remove_node(int index, struct LinkedList *linked_list)
     linked_list->length--;
 }
 
-int retrieve_data(int index, struct LinkedList *linked_list)
+void *retrieve_data(int index, struct LinkedList *linked_list)
 {
     struct Node *node = iterate(index, linked_list);
     return node->data;
