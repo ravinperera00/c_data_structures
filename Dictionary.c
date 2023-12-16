@@ -1,6 +1,7 @@
 #include "Dictionary.h"
 #include "Entry.h"
 #include <stdlib.h>
+#include <string.h>
 
 void insert_dictionary(Dictionary *dictionary, void *key, int key_size, void *value, int value_size);
 void *search_dictionary(Dictionary *dictionary, void *key);
@@ -29,4 +30,23 @@ void *search_dictionary(Dictionary *dictionary, void *key)
         return NULL;
     }
     return ((Entry *)entry)->value;
+}
+
+int COMPARE_STR_KEYS(void *item_one, void *item_two)
+{
+    Entry *entry_one = (Entry *)item_one;
+    char *entry_two = (char *)item_two;
+
+    if (strcmp(entry_one->key, entry_two) == 0)
+    {
+        return 0;
+    }
+    else if (strcmp(entry_one->key, entry_two) > 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
 }
