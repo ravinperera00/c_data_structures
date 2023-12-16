@@ -5,12 +5,13 @@
 
 typedef struct BinarySearchTree
 {
-    Node* root;
-    int (*compare)(void* data_one, void* data_two);
-    void* (*search)(struct BinarySearchTree* tree, void* data);
-    void (*insert)(struct BinarySearchTree* tree, void* data);
-}BinarySearchTree;
+    Node *root;
+    int (*compare)(void *data_one, void *data_two);
+    void *(*search)(struct BinarySearchTree *tree, void *data);
+    void (*insert)(struct BinarySearchTree *tree, void *data, int size);
+    void (*remove)(struct BinarySearchTree *tree, void *data);
+} BinarySearchTree;
 
-BinarySearchTree binary_search_tree_constructor(int (*compare)(void* data_one, void* data_two));
+BinarySearchTree binary_search_tree_constructor(int (*compare)(void *data_one, void *data_two));
 
 #endif

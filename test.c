@@ -1,27 +1,45 @@
-#include "Queue.h"
+#include "BinarySearchTree.h"
+#include "Dictionary.h"
+#include "Entry.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
+int compare(void *data_one, void *data_two)
+{
+    Entry *entry_one = (Entry *)data_one;
+    int *int_one = (int *)entry_one->key;
+    int *int_two = (int *)data_two;
+
+    if (*int_one < *int_two)
+    {
+        return 1;
+    }
+    else if (*int_one > *int_two)
+    {
+        return -1;
+    }
+    else
+    {
+        return 0;
+    }
+}
 
 int main()
 {
-    struct Queue queue = queue_constructor(true, 1);
-    int *data1 = (int *)malloc(sizeof(int));
-    int *data2 = (int *)malloc(sizeof(int));
-    *data1 = 55;
-    *data2 = 66;
+    Dictionary dictionary = dictionary_constructor(compare);
+    int *key = malloc(sizeof(int));
+    *key = 1;
+    int *value = malloc(sizeof(int));
+    *value = 2;
+    dictionary.insert(&dictionary, key, sizeof(int), value, sizeof(int));
+    int *key2 = malloc(sizeof(int));
+    *key2 = 2;
+    int *value2 = malloc(sizeof(int));
+    *value2 = 3;
+    dictionary.insert(&dictionary, key2, sizeof(int), value2, sizeof(int));
 
-    queue.enqueue(data1, sizeof(int), &queue);
-    queue.enqueue(data2, sizeof(int), &queue);
-
-    printf("%d\n", *((int *)(queue.peek(&queue))));
-    queue.dequeue(&queue);
-    int *peek_val = (int *)(queue.peek(&queue));
-    if (peek_val != NULL)
-    {
-        printf("%d\n", *peek_val);
-    }
-
-    queue.dequeue(&queue);
+    int *result = (int *)dictionary.search(&dictionary, key);
 
     return 0;
 }
