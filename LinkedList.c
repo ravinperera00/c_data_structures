@@ -6,7 +6,7 @@ void destroy_node(struct Node *node);
 struct Node *iterate(int index, struct LinkedList *linked_list);
 
 void insert_node(int index, void *data, struct LinkedList *linked_list);
-void remove_node(int index, struct LinkedList *linked_list);
+int remove_node(int index, struct LinkedList *linked_list);
 void *retrieve_data(int index, struct LinkedList *linked_list);
 
 struct LinkedList linked_list_constructor()
@@ -79,12 +79,12 @@ void insert_node(int index, void *data, struct LinkedList *linked_list)
     linked_list->length++;
 }
 
-void remove_node(int index, struct LinkedList *linked_list)
+int remove_node(int index, struct LinkedList *linked_list)
 {
     if (index < 0 || index >= linked_list->length)
     {
         printf("Index out of bounds\n");
-        exit(9);
+        return 0;
     }
 
     struct Node *node_to_remove;
@@ -103,10 +103,16 @@ void remove_node(int index, struct LinkedList *linked_list)
 
     destroy_node(node_to_remove);
     linked_list->length--;
+    return 1;
 }
 
 void *retrieve_data(int index, struct LinkedList *linked_list)
 {
+    if (index < 0 || index >= linked_list->length)
+    {
+        printf("Index out of bounds\n");
+        return NULL;
+    }
     struct Node *node = iterate(index, linked_list);
     return node->data;
 }
