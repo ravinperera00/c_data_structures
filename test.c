@@ -10,8 +10,8 @@ int main()
     *data1 = 55;
     *data2 = 66;
 
-    queue.enqueue(data1, &queue);
-    queue.enqueue(data2, &queue);
+    queue.enqueue(data1, sizeof(int), &queue);
+    queue.enqueue(data2, sizeof(int), &queue);
 
     printf("%d\n", *((int *)(queue.peek(&queue))));
     queue.dequeue(&queue);

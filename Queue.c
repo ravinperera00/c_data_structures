@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int enqueue(void *data, struct Queue *queue)
+int enqueue(void *data, int size, Queue *queue)
 {
     if (queue->is_static && queue->list.length == queue->length)
     {
         printf("Queue is full\n");
         return 0;
     }
-    queue->list.insert(queue->list.length, data, &queue->list);
+    queue->list.insert(queue->list.length, data, size, &queue->list);
     return 1;
 }
 
-void dequeue(struct Queue *queue)
+void dequeue(Queue *queue)
 {
     if (!(queue->list.remove(0, &queue->list)))
     {
@@ -21,7 +21,7 @@ void dequeue(struct Queue *queue)
     }
 }
 
-void *peek(struct Queue *queue)
+void *peek(Queue *queue)
 {
     void *data = queue->list.retrieve(0, &queue->list);
     if (data == NULL)
@@ -32,9 +32,9 @@ void *peek(struct Queue *queue)
     return data;
 }
 
-struct Queue queue_constructor(bool is_static, int length)
+Queue queue_constructor(bool is_static, int length)
 {
-    struct Queue queue;
+    Queue queue;
     queue.length = length;
     queue.is_static = is_static;
     queue.list = linked_list_constructor();

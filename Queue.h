@@ -4,16 +4,16 @@
 #include "LinkedList.h"
 #include <stdbool.h>
 
-struct Queue
+typedef struct Queue
 {
     int length;
     bool is_static;
     struct LinkedList list;
-    int (*enqueue)(void *data, struct Queue *queue);
+    int (*enqueue)(void *data, int size, struct Queue *queue);
     void (*dequeue)(struct Queue *queue);
     void *(*peek)(struct Queue *queue);
-};
+} Queue;
 
-struct Queue queue_constructor(bool is_static, int length);
+Queue queue_constructor(bool is_static, int length);
 
 #endif // QUEUE_H

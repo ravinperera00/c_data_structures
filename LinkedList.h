@@ -3,16 +3,16 @@
 #include <stdlib.h>
 #include "Node.h"
 
-struct LinkedList
+typedef struct LinkedList
 {
-    struct Node *head;
+    Node *head;
     int length;
 
-    void (*insert)(int index, void *data, struct LinkedList *linked_list);
+    void (*insert)(int index, void *data, int size, struct LinkedList *linked_list);
     int (*remove)(int index, struct LinkedList *linked_list);
     void *(*retrieve)(int index, struct LinkedList *linked_list);
-};
+} LinkedList;
 
-struct LinkedList linked_list_constructor();
+LinkedList linked_list_constructor();
 
 #endif
