@@ -14,5 +14,6 @@ typedef struct LinkedList
 } LinkedList;
 
 LinkedList linked_list_constructor();
+void linked_list_destructor(LinkedList *linked_list);
 
 #endif
