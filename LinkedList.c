@@ -9,6 +9,7 @@ Node *iterate_linked_list(int index, LinkedList *linked_list);
 void insert_node(int index, void *data, int size, LinkedList *linked_list);
 int remove_node_linked_list(int index, LinkedList *linked_list);
 void *retrieve_data(int index, LinkedList *linked_list);
+void linked_list_destructor(struct LinkedList *linked_list);
 
 LinkedList linked_list_constructor()
 {
@@ -20,6 +21,14 @@ LinkedList linked_list_constructor()
     linked_list.retrieve = retrieve_data;
 
     return linked_list;
+}
+
+void linked_list_destructor(LinkedList *linked_list)
+{
+    for (int i = 0; i < linked_list->length; i++)
+    {
+        linked_list->remove(0, linked_list);
+    }
 }
 
 Node *create_node_linked_list(void *data, int size)

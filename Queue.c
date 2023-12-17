@@ -42,3 +42,8 @@ Queue queue_constructor(bool is_static, int length)
 
     return queue;
 }
+
+void queue_destructor(Queue *queue)
+{
+    linked_list_destructor(&queue->list);
+}
