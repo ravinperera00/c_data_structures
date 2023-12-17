@@ -6,7 +6,6 @@ int enqueue(void *data, int size, Queue *queue)
 {
     if (queue->is_static && queue->list.length == queue->length)
     {
-        printf("Queue is full\n");
         return 0;
     }
     queue->list.insert(queue->list.length, data, size, &queue->list);
@@ -26,7 +25,6 @@ void *peek(Queue *queue)
     void *data = queue->list.retrieve(0, &queue->list);
     if (data == NULL)
     {
-        printf("Nothing to peek\n");
         return NULL;
     }
     return data;

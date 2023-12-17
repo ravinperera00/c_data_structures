@@ -39,7 +39,6 @@ Node *iterate_linked_list(int index, LinkedList *linked_list)
 {
     if (index < 0 || index >= linked_list->length)
     {
-        printf("Index out of bounds\n");
         exit(9);
     }
 
@@ -57,7 +56,6 @@ void insert_node(int index, void *data, int size, LinkedList *linked_list)
 {
     if (index < 0 || index > linked_list->length)
     {
-        printf("Index out of bounds\n");
         exit(9);
     }
 
@@ -82,7 +80,6 @@ int remove_node_linked_list(int index, LinkedList *linked_list)
 {
     if (index < 0 || index >= linked_list->length)
     {
-        printf("Index out of bounds\n");
         return 0;
     }
 
@@ -109,7 +106,6 @@ void *retrieve_data(int index, LinkedList *linked_list)
 {
     if (index < 0 || index >= linked_list->length)
     {
-        printf("Index out of bounds\n");
         return NULL;
     }
     Node *node = iterate_linked_list(index, linked_list);
