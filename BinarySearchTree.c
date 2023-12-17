@@ -50,7 +50,7 @@ void destroy_tree(Node *node)
 
 Node *iterate_binary_tree(BinarySearchTree *tree, Node *cursor, void *data, int *direction, Node **prev_cursor)
 {
-    if (cursor == NULL)
+    if (cursor == NULL || tree->root == NULL)
     {
         return NULL;
     }
@@ -101,7 +101,7 @@ void *search_binary_tree(BinarySearchTree *tree, void *data)
     int direction = 0;
     Node *cursor = iterate_binary_tree(tree, tree->root, data, &direction, NULL);
 
-    if (direction == 0)
+    if (direction == 0 && cursor != NULL)
     {
         return cursor->data;
     }
