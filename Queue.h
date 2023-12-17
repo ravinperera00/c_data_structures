@@ -15,5 +15,6 @@ typedef struct Queue
 } Queue;
 
 Queue queue_constructor(bool is_static, int length);
+void queue_destructor(Queue *queue);
 
 #endif // QUEUE_H
