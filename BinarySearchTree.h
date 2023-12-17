@@ -10,6 +10,7 @@ typedef struct BinarySearchTree
     void *(*search)(struct BinarySearchTree *tree, void *data);
     void (*insert)(struct BinarySearchTree *tree, void *data, int size);
     void (*remove)(struct BinarySearchTree *tree, void *data);
+    void (*destroy)(Node *node);
 } BinarySearchTree;
 
 BinarySearchTree binary_search_tree_constructor(int (*compare)(void *data_one, void *data_two));

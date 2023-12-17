@@ -8,6 +8,7 @@ void destroy_node_binary_tree(Node *node);
 void *search_binary_tree(BinarySearchTree *tree, void *data);
 void insert_binary_tree(BinarySearchTree *tree, void *data, int size);
 void remove_node_binary_tree(BinarySearchTree *tree, void *data);
+void destroy_tree(Node *node);
 
 BinarySearchTree binary_search_tree_constructor(int (*compare)(void *data1, void *data2))
 {
@@ -17,6 +18,7 @@ BinarySearchTree binary_search_tree_constructor(int (*compare)(void *data1, void
     binary_search_tree.search = search_binary_tree;
     binary_search_tree.insert = insert_binary_tree;
     binary_search_tree.remove = remove_node_binary_tree;
+    binary_search_tree.destroy = destroy_tree;
 
     return binary_search_tree;
 }
@@ -32,6 +34,18 @@ Node *create_node_binary_tree(void *data, int size)
 void destroy_node_binary_tree(Node *node)
 {
     node_destructor(node);
+}
+
+void destroy_tree(Node *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    destroy_tree(node->next);
+    destroy_tree(node->prev);
+    destroy_node_binary_tree(node);
 }
 
 Node *iterate_binary_tree(BinarySearchTree *tree, Node *cursor, void *data, int *direction, Node **prev_cursor)
@@ -102,7 +116,7 @@ void insert_binary_tree(BinarySearchTree *tree, void *data, int size)
     int direction = 0;
     Node *cursor = iterate_binary_tree(tree, tree->root, data, &direction, NULL);
 
-    if (cursor == NULL)
+    if (!tree->root)
     {
         Node *new_node = create_node_binary_tree(data, size);
         tree->root = new_node;
