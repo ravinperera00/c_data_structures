@@ -23,4 +23,4 @@ A default compare function is provided (COMPARE_STR_KEYS). But feel free to writ
 
 The library is extremely primitive and only appropriate for educational projects and not for any commercial use.
 
-Feel free to provide feedback on what I can improve and issue you face 🙌🏽. 
+Feel free to provide feedback on what I can improve and issues you faced 🙌🏽. 
